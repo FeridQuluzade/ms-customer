@@ -17,7 +17,7 @@ public class CustomerController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CustomerDto> getCustomer(@PathVariable Long id) {
+    public ResponseEntity<CustomerDto> getCustomer(@PathVariable("id") Long id) {
         return new ResponseEntity<>(customerService.getCustomer(id), HttpStatus.OK);
     }
 
@@ -32,7 +32,7 @@ public class CustomerController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteCustomer(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteCustomer(@PathVariable("id") Long id) {
         customerService.deleteCustomer(id);
         return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }

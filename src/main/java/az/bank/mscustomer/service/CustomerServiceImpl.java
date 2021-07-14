@@ -27,6 +27,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public CustomerDto createCustomer(CustomerDto customerDto) {
+
         CustomerEntity entity = customerRepository
                 .save(CustomerMapper
                         .toEntity(customerDto));
