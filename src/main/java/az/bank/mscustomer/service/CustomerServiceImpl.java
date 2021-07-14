@@ -1,10 +1,11 @@
 package az.bank.mscustomer.service;
 
-import az.bank.mscustomer.dao.CustomerEntity;
-import az.bank.mscustomer.dao.CustomerRepository;
+import az.bank.mscustomer.exception.CustomerNotFoundException;
+import az.bank.mscustomer.repository.CustomerRepository;
 import az.bank.mscustomer.mapper.CustomerMapper;
-import az.bank.mscustomer.model.CustomerDto;
-import az.bank.mscustomer.model.exception.CustomerNotFoundException;
+
+import az.bank.mscustomer.repository.entity.CustomerEntity;
+import az.bank.mscustomer.service.dto.CustomerDto;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -58,8 +59,8 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public void deleteCustomer(Long id) {
         getCustomerById(id)
-                .ifPresent(x -> {
-                    customerRepository.deleteById(x.getId());
-                });
+                .ifPresent(x ->
+                    customerRepository.deleteById(x.getId())
+                );
     }
 }

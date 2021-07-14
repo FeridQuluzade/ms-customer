@@ -1,6 +1,5 @@
-package az.bank.mscustomer.dao;
+package az.bank.mscustomer.repository.entity;
 
-import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
@@ -10,12 +9,12 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+
 @Entity
 @Table(name = "customers")
 @Getter
 @Setter
 public class CustomerEntity {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -40,7 +39,5 @@ public class CustomerEntity {
 
     @UpdateTimestamp
     private LocalDateTime updatedAt;
-
-
 
 }

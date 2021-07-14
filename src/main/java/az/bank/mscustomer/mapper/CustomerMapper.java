@@ -1,7 +1,8 @@
 package az.bank.mscustomer.mapper;
 
-import az.bank.mscustomer.dao.CustomerEntity;
-import az.bank.mscustomer.model.CustomerDto;
+
+import az.bank.mscustomer.repository.entity.CustomerEntity;
+import az.bank.mscustomer.service.dto.CustomerDto;
 
 import java.util.Optional;
 
