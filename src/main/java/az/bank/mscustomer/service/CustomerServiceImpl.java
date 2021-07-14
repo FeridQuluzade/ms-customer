@@ -6,6 +6,7 @@ import az.bank.mscustomer.mapper.CustomerMapper;
 
 import az.bank.mscustomer.repository.entity.CustomerEntity;
 import az.bank.mscustomer.service.dto.CustomerDto;
+import az.bank.mscustomer.service.dto.CustomerUpdateDto;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -32,23 +33,25 @@ public class CustomerServiceImpl implements CustomerService {
         CustomerEntity entity = customerRepository
                 .save(CustomerMapper
                         .toEntity(customerDto));
-        customerDto.setId(entity.getId());
+    customerDto.setId(entity.getId());
         return customerDto;
     }
 
     @Override
-    public CustomerDto editCustomer(CustomerDto customerDto) {
-        getCustomerById(customerDto.getId())
+    public CustomerDto editCustomer(CustomerUpdateDto updateDto,Long id) {
+        getCustomerById(id)
                 .ifPresent(customerDto1 -> {
 
                     Optional<CustomerEntity> entity = customerRepository
-                            .findById(customerDto.getId());
+                            .findById(id);
 
                     customerRepository.save(CustomerMapper
-                            .toEntityforUpdate(customerDto, entity)
+                            .toEntityforUpdate(updateDto, entity)
                             .get());
                 });
-        return customerDto;
+
+
+        return getCustomer(id);
     }
 
     @Override

@@ -3,6 +3,7 @@ package az.bank.mscustomer.mapper;
 
 import az.bank.mscustomer.repository.entity.CustomerEntity;
 import az.bank.mscustomer.service.dto.CustomerDto;
+import az.bank.mscustomer.service.dto.CustomerUpdateDto;
 
 import java.util.Optional;
 
@@ -18,13 +19,14 @@ public class CustomerMapper {
         return entity;
     }
 
-    public static Optional<CustomerEntity> toEntityforUpdate(CustomerDto customerDto,
+    public static Optional<CustomerEntity> toEntityforUpdate(CustomerUpdateDto customerUpdateDto,
                                                              Optional<CustomerEntity> entity) {
-        entity.get().setFirstName(customerDto.getFirstName());
-        entity.get().setLastName(customerDto.getLastName());
-        entity.get().setEmail(customerDto.getEmail());
-        entity.get().setBirthDate(customerDto.getBirthDate());
-        entity.get().setPhoneNumber(customerDto.getPhoneNumber());
+
+        entity.get().setFirstName(customerUpdateDto.getFirstName());
+        entity.get().setLastName(customerUpdateDto.getLastName());
+        entity.get().setEmail(customerUpdateDto.getEmail());
+        entity.get().setBirthDate(customerUpdateDto.getBirthDate());
+        entity.get().setPhoneNumber(customerUpdateDto.getPhoneNumber());
         return entity;
     }
 
