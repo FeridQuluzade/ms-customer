@@ -14,12 +14,23 @@ Delete, delete single a customer : http://localhost:8080/customers/{id}
 
 Post, create a custoemer : http://localhost:8080/customers
 
-Create request body 
+Create a customer body :
 {
     "firstName" : "",
     "lastName" : "",
     "birthDate" : "YYYY-MM-DD",
     "email" : "",
     "phoneNumber" : ""
+}
+
+Update a customer body:
+{
+    "id": "", (if exists)
+    "firstName" : "",
+    "lastName" : "",
+    "birthDate" : "YYYY-MM-DD",
+    "email" : "",
+    "phoneNumber" : ""
+
 }
 
