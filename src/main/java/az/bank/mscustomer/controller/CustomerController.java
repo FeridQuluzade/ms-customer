@@ -4,6 +4,7 @@ import az.bank.mscustomer.model.CustomerDto;
 import az.bank.mscustomer.service.CustomerService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -22,12 +23,12 @@ public class CustomerController {
     }
 
     @PostMapping()
-    public ResponseEntity<CustomerDto> addCustomer(@RequestBody CustomerDto customerDto) {
+    public ResponseEntity<CustomerDto> addCustomer(@RequestBody @Validated CustomerDto customerDto) {
         return new ResponseEntity<>(customerService.createCustomer(customerDto), HttpStatus.CREATED);
     }
 
     @PutMapping
-    public ResponseEntity<CustomerDto> editCustomer(@RequestBody CustomerDto customerDto) {
+    public ResponseEntity<CustomerDto> editCustomer(@RequestBody @Validated  CustomerDto customerDto) {
         return new ResponseEntity<>(customerService.editCustomer(customerDto), HttpStatus.ACCEPTED);
     }
 
