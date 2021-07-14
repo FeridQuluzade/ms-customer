@@ -7,13 +7,11 @@ import lombok.Setter;
 
 import java.time.LocalDate;
 
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
-public class CustomerDto {
-
-      private Long id;
+@AllArgsConstructor
+@NoArgsConstructor
+public class CustomerUpdateDto {
     private String firstName;
     private String lastName;
     private LocalDate birthDate;

@@ -2,13 +2,14 @@ package az.bank.mscustomer.controller;
 
 import az.bank.mscustomer.service.CustomerService;
 import az.bank.mscustomer.service.dto.CustomerDto;
+import az.bank.mscustomer.service.dto.CustomerUpdateDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/customers")
+@RequestMapping("/v1/customers")
 public class CustomerController {
 
     private final CustomerService customerService;
@@ -27,9 +28,9 @@ public class CustomerController {
         return new ResponseEntity<>(customerService.createCustomer(customerDto), HttpStatus.CREATED);
     }
 
-    @PutMapping
-    public ResponseEntity<CustomerDto> editCustomer(@RequestBody @Validated  CustomerDto customerDto) {
-        return new ResponseEntity<>(customerService.editCustomer(customerDto), HttpStatus.ACCEPTED);
+    @PutMapping("/{id}")
+    public ResponseEntity<CustomerDto> editCustomer(@PathVariable("id") Long id,@RequestBody @Validated CustomerUpdateDto customerUpdateDto) {
+        return new ResponseEntity<>(customerService.editCustomer(customerUpdateDto, id), HttpStatus.ACCEPTED);
     }
 
     @DeleteMapping("/{id}")
