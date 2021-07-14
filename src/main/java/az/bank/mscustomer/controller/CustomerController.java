@@ -1,7 +1,7 @@
 package az.bank.mscustomer.controller;
 
-import az.bank.mscustomer.model.CustomerDto;
 import az.bank.mscustomer.service.CustomerService;
+import az.bank.mscustomer.service.dto.CustomerDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;

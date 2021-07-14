@@ -1,6 +1,7 @@
 package az.bank.mscustomer.service;
 
-import az.bank.mscustomer.model.CustomerDto;
+
+import az.bank.mscustomer.service.dto.CustomerDto;
 
 public interface CustomerService {
 
