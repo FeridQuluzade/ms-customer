@@ -20,12 +20,12 @@ public class CustomerServiceImpl implements CustomerService {
         this.customerRepository = customerRepository;
     }
 
-    private Optional<CustomerDto> getCustomerById(Long id) {
-        return Optional.of(CustomerMapper
-                .toDto(customerRepository.findById(id)
-                        .orElseThrow(
-                                () -> new CustomerNotFoundException("Customer with given id not found: " + id))));
-    }
+//    private CustomerDto getCustomerById(Long id) {
+//        return CustomerMapper
+//                .toDto(customerRepository.findById(id)
+//                        .orElseThrow(
+//                                () -> new CustomerNotFoundException("Customer with given id not found: " + id)));
+//    }
 
     @Override
     public CustomerDto createCustomer(CustomerDto customerDto) {
@@ -33,37 +33,34 @@ public class CustomerServiceImpl implements CustomerService {
         CustomerEntity entity = customerRepository
                 .save(CustomerMapper
                         .toEntity(customerDto));
-    customerDto.setId(entity.getId());
+        customerDto.setId(entity.getId());
         return customerDto;
     }
 
     @Override
-    public CustomerDto editCustomer(CustomerUpdateDto updateDto,Long id) {
-        getCustomerById(id)
-                .ifPresent(customerDto1 -> {
+    public CustomerDto editCustomer(CustomerUpdateDto updateDto, Long id) {
+        Optional<CustomerEntity> entity = customerRepository.findById(id);
 
-                    Optional<CustomerEntity> entity = customerRepository
-                            .findById(id);
-
-                    customerRepository.save(CustomerMapper
-                            .toEntityforUpdate(updateDto, entity)
-                            .get());
-                });
-
+        if (customerRepository.existsById(id)) {
+            customerRepository.save(CustomerMapper
+                    .toEntityforUpdate(updateDto, entity)
+                    .get());
+        }else throw new CustomerNotFoundException("Customer with given id not found: " + id);
 
         return getCustomer(id);
     }
 
     @Override
     public CustomerDto getCustomer(Long id) {
-        return getCustomerById(id).get();
+        return CustomerMapper.toDto(customerRepository.findById(id)
+                .orElseThrow(
+                        () -> new CustomerNotFoundException("Customer with given id not found: " + id)));
     }
 
     @Override
     public void deleteCustomer(Long id) {
-        getCustomerById(id)
-                .ifPresent(x ->
-                    customerRepository.deleteById(x.getId())
-                );
+        if (customerRepository.existsById(id)) {
+            customerRepository.deleteById(id);
+        } else throw new CustomerNotFoundException("Customer with given id not found: " + id);
     }
 }

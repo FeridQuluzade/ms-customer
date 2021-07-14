@@ -18,23 +18,14 @@ public class CustomerEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-
     private String firstName;
-
-
     private String lastName;
-
-
     private LocalDate birthDate;
-
-
     private String email;
-
-
     private String phoneNumber;
 
     @CreationTimestamp
+    @Column(updatable = false)
     private LocalDateTime createdAt;
 
     @UpdateTimestamp

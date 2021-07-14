@@ -18,6 +18,15 @@ public class CustomerMapper {
         entity.setPhoneNumber(customerDto.getPhoneNumber());
         return entity;
     }
+    public static CustomerEntity toEntity(CustomerUpdateDto customerDto) {
+        CustomerEntity entity = new CustomerEntity();
+        entity.setFirstName(customerDto.getFirstName());
+        entity.setLastName(customerDto.getLastName());
+        entity.setBirthDate(customerDto.getBirthDate());
+        entity.setEmail(customerDto.getEmail());
+        entity.setPhoneNumber(customerDto.getPhoneNumber());
+        return entity;
+    }
 
     public static Optional<CustomerEntity> toEntityforUpdate(CustomerUpdateDto customerUpdateDto,
                                                              Optional<CustomerEntity> entity) {
