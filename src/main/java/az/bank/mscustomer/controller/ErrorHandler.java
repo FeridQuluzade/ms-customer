@@ -25,7 +25,7 @@ public class ErrorHandler extends ResponseEntityExceptionHandler {
     public ResponseEntity<Object> handleAllException(Exception e,
                                                      WebRequest webRequest) {
         return handleExceptionInternal(e,
-                new ErrorDto("uxexpected.exception", e.getMessage()),
+                new ErrorDto("unexpected.exception", e.getMessage()),
                 new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR, webRequest
         );
     }
