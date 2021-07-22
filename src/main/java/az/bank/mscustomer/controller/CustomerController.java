@@ -1,6 +1,7 @@
 package az.bank.mscustomer.controller;
 
 import az.bank.mscustomer.service.CustomerService;
+import az.bank.mscustomer.service.dto.CustomerCreateDto;
 import az.bank.mscustomer.service.dto.CustomerDto;
 import az.bank.mscustomer.service.dto.CustomerUpdateDto;
 import org.springframework.http.HttpStatus;
@@ -24,8 +25,8 @@ public class CustomerController {
     }
 
     @PostMapping()
-    public ResponseEntity<CustomerDto> addCustomer(@RequestBody @Validated CustomerDto customerDto) {
-        return new ResponseEntity<>(customerService.createCustomer(customerDto), HttpStatus.CREATED);
+    public ResponseEntity<CustomerDto> addCustomer(@RequestBody @Validated CustomerCreateDto customerCreateDto) {
+        return new ResponseEntity<>(customerService.createCustomer(customerCreateDto), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
