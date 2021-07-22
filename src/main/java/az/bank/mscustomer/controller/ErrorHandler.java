@@ -1,5 +1,7 @@
 package az.bank.mscustomer.controller;
 
+import az.bank.mscustomer.exception.AddressNotFoundException;
+import az.bank.mscustomer.exception.ContactNotFoundException;
 import az.bank.mscustomer.exception.CustomerNotFoundException;
 
 import az.bank.mscustomer.service.dto.ErrorDto;
@@ -22,6 +24,14 @@ public class ErrorHandler extends ResponseEntityExceptionHandler {
                 new HttpHeaders(), HttpStatus.NOT_FOUND, webRequest);
     }
 
+    @ExceptionHandler(AddressNotFoundException.class)
+    public ResponseEntity<Object> handleAddressNotFoundException(WebRequest webRequest,
+                                                                 AddressNotFoundException addressNotFoundException) {
+        return handleExceptionInternal(addressNotFoundException,
+                new ErrorDto("address.not-found", addressNotFoundException.getMessage()),
+                new HttpHeaders(), HttpStatus.NOT_FOUND, webRequest);
+    }
+
     @ExceptionHandler
     public ResponseEntity<Object> handleAllException(Exception e,
                                                      WebRequest webRequest) {
@@ -30,4 +40,13 @@ public class ErrorHandler extends ResponseEntityExceptionHandler {
                 new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR, webRequest
         );
     }
+
+    @ExceptionHandler
+    public ResponseEntity<Object> handleContactNotFoundException(WebRequest webRequest,
+                                                                 ContactNotFoundException contactNotFoundException){
+        return handleExceptionInternal(contactNotFoundException,
+                new ErrorDto("contact.not-found",contactNotFoundException.getMessage()),
+                new HttpHeaders(),HttpStatus.NOT_FOUND,webRequest);
+    }
+
 }

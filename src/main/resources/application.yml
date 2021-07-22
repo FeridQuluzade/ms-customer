@@ -3,3 +3,7 @@ spring:
     password: Pass1234
     username: postgres
     url: jdbc:postgresql://localhost:5432/customer
+  jpa:
+    hibernate:
+      ddl-auto: update
+    generate-ddl: true
