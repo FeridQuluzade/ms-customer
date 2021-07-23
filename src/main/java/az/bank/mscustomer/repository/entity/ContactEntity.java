@@ -13,13 +13,13 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "contacts")
-public class Contact extends AbstractAuditingEntity{
+public class ContactEntity extends AbstractAuditingEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne()
-    @OnDelete(action = OnDeleteAction.CASCADE)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//    @OnDelete(action = OnDeleteAction.CASCADE)
     private CustomerEntity customer;
     private ContactType contactType;
     private String contactValue;

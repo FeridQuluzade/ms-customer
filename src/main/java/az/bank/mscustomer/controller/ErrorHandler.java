@@ -33,20 +33,20 @@ public class ErrorHandler extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler
+    public ResponseEntity<Object> handleContactNotFoundException(WebRequest webRequest,
+                                                                 ContactNotFoundException contactNotFoundException){
+        return handleExceptionInternal(contactNotFoundException,
+                new ErrorDto("contact.not-found",contactNotFoundException.getMessage()),
+                new HttpHeaders(),HttpStatus.NOT_FOUND,webRequest);
+    }
+
+    @ExceptionHandler
     public ResponseEntity<Object> handleAllException(Exception e,
                                                      WebRequest webRequest) {
         return handleExceptionInternal(e,
                 new ErrorDto("unexpected.exception", e.getMessage()),
                 new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR, webRequest
         );
-    }
-
-    @ExceptionHandler
-    public ResponseEntity<Object> handleContactNotFoundException(WebRequest webRequest,
-                                                                 ContactNotFoundException contactNotFoundException){
-        return handleExceptionInternal(contactNotFoundException,
-                new ErrorDto("contact.not-found",contactNotFoundException.getMessage()),
-                new HttpHeaders(),HttpStatus.NOT_FOUND,webRequest);
     }
 
 }
