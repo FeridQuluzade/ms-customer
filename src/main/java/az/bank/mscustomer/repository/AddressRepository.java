@@ -1,8 +1,8 @@
 package az.bank.mscustomer.repository;
 
-import az.bank.mscustomer.repository.entity.Address;
+import az.bank.mscustomer.repository.entity.AddressEntity;
 import org.springframework.data.repository.CrudRepository;
 
-public interface AddressRepository extends CrudRepository<Address,Long> {
+public interface AddressRepository extends CrudRepository<AddressEntity,Long> {
 
 }

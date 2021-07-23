@@ -31,13 +31,13 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public CustomerDto editCustomer(CustomerUpdateDto updateDto, Long id) {
-        CustomerDto customerDto;
-        if (customerRepository.existsById(id)) {
-            customerDto = customerMapper.toDto(customerRepository.save(customerMapper
-                    .fromDto(updateDto)));
-        } else throw new CustomerNotFoundException("Customer with given id not found: " + id);
+        findById(id);
 
-        return customerDto;
+        CustomerEntity customerEntity= customerMapper.fromDto(updateDto);
+        customerEntity.setId(id);
+        customerRepository.save(customerEntity);
+
+        return customerMapper.toDto(customerEntity);
     }
 
     protected CustomerEntity findById(Long id) {
@@ -54,9 +54,8 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void deleteCustomer(Long id) {
-        if (customerRepository.existsById(id)) {
-            customerRepository.deleteById(id);
-        } else throw new CustomerNotFoundException("Customer with given id not found: " + id);
+        findById(id);
+        customerRepository.deleteById(id);
     }
 }
 
