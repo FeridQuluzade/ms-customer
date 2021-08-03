@@ -9,7 +9,6 @@ import az.bank.mscustomer.service.dto.CustomerDto;
 import az.bank.mscustomer.service.dto.CustomerUpdateDto;
 import org.springframework.stereotype.Service;
 
-
 @Service
 public class CustomerServiceImpl implements CustomerService {
     private final CustomerRepository customerRepository;
@@ -58,10 +57,3 @@ public class CustomerServiceImpl implements CustomerService {
         customerRepository.deleteById(id);
     }
 }
-
-//    private CustomerDto getCustomerById(Long id) {
-//        return CustomerMapper
-//                .toDto(customerRepository.findById(id)
-//                        .orElseThrow(
-//                                () -> new CustomerNotFoundException("Customer with given id not found: " + id)));
-//    }

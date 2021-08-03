@@ -2,6 +2,7 @@ package az.bank.mscustomer.service;
 
 import az.bank.mscustomer.exception.ContactNotFoundException;
 import az.bank.mscustomer.mapper.ContactMapper;
+
 import az.bank.mscustomer.repository.ContactRepository;
 import az.bank.mscustomer.repository.entity.ContactEntity;
 import az.bank.mscustomer.repository.entity.CustomerEntity;
@@ -37,7 +38,7 @@ public class ContactServiceImpl implements ContactService {
 
     private ContactEntity findContact(Long id) {
         return contactRepository.findById(id)
-                .orElseThrow(() -> new ContactNotFoundException("ContactEntity with given id not found:" + id));
+                .orElseThrow(() -> new ContactNotFoundException("Contact with given id not found:" + id));
     }
 
     @Override

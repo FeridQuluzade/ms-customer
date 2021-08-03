@@ -17,10 +17,5 @@ public class CustomerEntity extends AbstractAuditingEntity {
     private String firstName;
     private String lastName;
     private LocalDate birthDate;
-
-
-
-
 //    private CustomerAddressEntity customerAddress;
-
 }
