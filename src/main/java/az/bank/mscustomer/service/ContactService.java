@@ -5,6 +5,7 @@ import az.bank.mscustomer.service.dto.ContactDto;
 import az.bank.mscustomer.service.dto.ContactUpdateDto;
 
 public interface ContactService {
+
     ContactDto createCustomer(ContactCreateDto createDto);
 
     ContactDto getContact(Long id);
@@ -12,4 +13,5 @@ public interface ContactService {
     ContactDto editContact(Long id, ContactUpdateDto contactUpdateDto);
 
     void deleteContact(Long id);
+
 }

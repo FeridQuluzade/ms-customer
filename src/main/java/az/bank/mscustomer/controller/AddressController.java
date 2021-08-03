@@ -38,5 +38,4 @@ public class AddressController {
         addressService.deleteAddress(id);
        return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
-
 }

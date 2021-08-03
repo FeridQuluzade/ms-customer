@@ -9,6 +9,7 @@ import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring", uses = {CustomerMapper.class})
 public interface ContactMapper {
+
     @Mapping(source = "contactEntity.customer", target = "customerDto")
     ContactDto toDto(ContactEntity contactEntity);
 
