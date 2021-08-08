@@ -7,5 +7,5 @@ public class AddressCreateDto {
     private String country;
     private String city;
     private String street;
-    private Long customerId;
+
 }

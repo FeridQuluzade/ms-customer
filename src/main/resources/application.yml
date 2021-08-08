@@ -5,5 +5,7 @@ spring:
     url: jdbc:postgresql://localhost:5432/customer
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create-drop
     generate-ddl: true
+server:
+  port: 8091

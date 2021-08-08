@@ -48,5 +48,4 @@ public class ErrorHandler extends ResponseEntityExceptionHandler {
                 new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR, webRequest
         );
     }
-
 }

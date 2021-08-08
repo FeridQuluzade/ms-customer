@@ -11,7 +11,6 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring", uses = {CustomerMapper.class},imports = {CustomerServiceImpl.class})
 public interface AddressMapper {
 
-    @Mapping(source = "addressEntity.customerEntity", target = "customerDto")
     AddressDto toDto(AddressEntity addressEntity);
 
   //  @Mapping(source = "createDto.customerId",expression = "CustomerServiceImpl.getCustomer(createDto.customerId)", target = "customerEntity")
