@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class CustomerContactDto {
+public class ContactDto {
     private Long id;
     private ContactType contactType;
     private String contactValue;
