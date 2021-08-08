@@ -24,9 +24,11 @@ public class CustomerEntity extends AbstractAuditingEntity {
     private LocalDate birthDate;
 
     @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "customer_id")
     private Set<ContactEntity> customerContactAddress;
 
     @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id")
     private AddressEntity addressEntity;
-//    private CustomerAddressEntity customerAddress;
+
 }

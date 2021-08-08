@@ -3,9 +3,9 @@ package az.bank.mscustomer.service;
 import az.bank.mscustomer.exception.CustomerNotFoundException;
 import az.bank.mscustomer.mapper.CustomerMapper;
 import az.bank.mscustomer.repository.CustomerRepository;
+import az.bank.mscustomer.repository.entity.AddressEntity;
 import az.bank.mscustomer.repository.entity.ContactEntity;
 import az.bank.mscustomer.repository.entity.CustomerEntity;
-import az.bank.mscustomer.service.dto.ContactDto;
 import az.bank.mscustomer.service.dto.CustomerCreateDto;
 import az.bank.mscustomer.service.dto.CustomerDto;
 import az.bank.mscustomer.service.dto.CustomerUpdateDto;
@@ -18,7 +18,6 @@ import java.util.Set;
 @Slf4j
 public class CustomerServiceImpl implements CustomerService {
     private final CustomerRepository customerRepository;
-
     private final CustomerMapper customerMapper;
 
     public CustomerServiceImpl(CustomerRepository customerRepository,
@@ -36,38 +35,37 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public CustomerDto createCustomer(CustomerCreateDto customerCreateDto) {
-        CustomerEntity entity = customerRepository
-                .save(customerMapper.fromDto(customerCreateDto));
-        return   customerMapper.toDto(entity);
+        return customerMapper.toDto(
+                customerRepository.save(
+                        customerMapper.fromDto(customerCreateDto)));
     }
 
     @Override
     public CustomerDto editCustomer(CustomerUpdateDto updateDto, Long id) {
-        findById(id);
+        CustomerEntity customerDb = findById(id);
+        AddressEntity addressEntity = customerDb.getAddressEntity();
+        Set<ContactEntity> contactEntity = customerDb.getCustomerContactAddress();
 
-        CustomerEntity customerEntity = customerMapper.fromDto(updateDto);
-        customerEntity.setId(id);
-        customerRepository.save(customerEntity);
+        CustomerEntity customerUpdateEntity = customerMapper.fromDto(updateDto);
+        AddressEntity addressUpdateEntity = customerUpdateEntity.getAddressEntity();
+        Set<ContactEntity> contactUpdateEntity = customerUpdateEntity.getCustomerContactAddress();
 
-        return customerMapper.toDto(customerEntity);
+        addressUpdateEntity.setId(addressEntity.getId());
+        contactUpdateEntity
+                .forEach(x -> contactEntity
+                        .forEach(j -> x.setId(j.getId())));
+
+        customerUpdateEntity.setId(id);
+        customerUpdateEntity.setAddressEntity(addressUpdateEntity);
+        customerUpdateEntity.setCustomerContactAddress(contactUpdateEntity);
+
+        customerRepository.save(customerUpdateEntity);
+        return customerMapper.toDto(customerUpdateEntity);
     }
 
     @Override
     public CustomerDto getCustomer(Long id) {
-        CustomerDto customerDto = customerMapper.toDto(findById(id));
-
-         CustomerEntity entity=findById(id);
-        Set<ContactEntity> contactEntities=entity.getCustomerContactAddress();
-
-        for (ContactEntity c:
-             contactEntities) {
-            log.info(c.getId().toString());
-        }
-        for (ContactDto c:
-             customerDto.getContactDtoSet()) {
-            log.info(c.toString());
-        }
-        return customerDto;
+        return customerMapper.toDto(findById(id));
     }
 
     @Override

@@ -23,4 +23,5 @@ public class ContactEntity extends AbstractAuditingEntity {
     private ContactType contactType;
 
     private String contactValue;
+
 }
