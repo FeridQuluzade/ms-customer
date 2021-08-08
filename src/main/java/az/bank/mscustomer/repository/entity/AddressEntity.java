@@ -23,8 +23,4 @@ public class AddressEntity extends AbstractAuditingEntity {
     private String city;
     private String street;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    private CustomerEntity customerEntity;
-
 }

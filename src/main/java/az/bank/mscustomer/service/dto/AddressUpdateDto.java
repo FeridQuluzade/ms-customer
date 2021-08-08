@@ -7,5 +7,4 @@ public class AddressUpdateDto {
     private String country;
     private String city;
     private String street;
-    private Long customerId;
 }
