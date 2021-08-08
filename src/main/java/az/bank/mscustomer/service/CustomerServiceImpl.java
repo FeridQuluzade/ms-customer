@@ -2,11 +2,10 @@ package az.bank.mscustomer.service;
 
 import az.bank.mscustomer.exception.CustomerNotFoundException;
 import az.bank.mscustomer.mapper.CustomerMapper;
-import az.bank.mscustomer.repository.ContactRepository;
 import az.bank.mscustomer.repository.CustomerRepository;
 import az.bank.mscustomer.repository.entity.ContactEntity;
 import az.bank.mscustomer.repository.entity.CustomerEntity;
-import az.bank.mscustomer.service.dto.CustomerContactDto;
+import az.bank.mscustomer.service.dto.ContactDto;
 import az.bank.mscustomer.service.dto.CustomerCreateDto;
 import az.bank.mscustomer.service.dto.CustomerDto;
 import az.bank.mscustomer.service.dto.CustomerUpdateDto;
@@ -19,14 +18,12 @@ import java.util.Set;
 @Slf4j
 public class CustomerServiceImpl implements CustomerService {
     private final CustomerRepository customerRepository;
-    private final ContactRepository contactRepository;
+
     private final CustomerMapper customerMapper;
 
     public CustomerServiceImpl(CustomerRepository customerRepository,
-                               ContactRepository contactRepository,
                                CustomerMapper customerMapper) {
         this.customerRepository = customerRepository;
-        this.contactRepository = contactRepository;
         this.customerMapper = customerMapper;
     }
 
@@ -66,7 +63,7 @@ public class CustomerServiceImpl implements CustomerService {
              contactEntities) {
             log.info(c.getId().toString());
         }
-        for (CustomerContactDto c:
+        for (ContactDto c:
              customerDto.getContactDtoSet()) {
             log.info(c.toString());
         }

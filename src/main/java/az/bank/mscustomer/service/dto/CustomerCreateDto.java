@@ -17,6 +17,6 @@ public class CustomerCreateDto {
     private String firstName;
     private String lastName;
     private LocalDate birthDate;
-    private Set<CustomerContactDto> contactDtoSet;
+    private Set<ContactCreateDto> contactDtoSet;
     private AddressCreateDto addressDto;
 }
