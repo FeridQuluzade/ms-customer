@@ -5,7 +5,10 @@ spring:
     url: jdbc:postgresql://localhost:5432/customer
   jpa:
     hibernate:
-      ddl-auto: create-drop
-    generate-ddl: true
+      ddl-auto: none
+    generate-ddl: false
+  liquibase:
+    enabled: true
+    change-log: classpath:liquibase/changelog-master.yml
 server:
   port: 8091

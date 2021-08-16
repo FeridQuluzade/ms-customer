@@ -4,7 +4,7 @@ package az.bank.mscustomer.repository.entity;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum ContactType {
-  EMAIL,PHONE,EMAIL2;
+  EMAIL,PHONE;
 
   @JsonValue
   public String toLower() {

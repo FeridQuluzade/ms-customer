@@ -1,0 +1,36 @@
+databaseChangeLog:
+  - changeSet:
+      id: Create customers table
+      author: Ferid Quluzade
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: first_name
+                  type: varchar(32)
+              - column:
+                  name: last_name
+                  type: varchar(32)
+              - column:
+                  name: birth_date
+                  type: date
+              - column:
+                  name: created_at
+                  type: timestamp
+              - column:
+                  name: updated_at
+                  type: timestamp
+              - column:
+                  name: address_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: "fk_address"
+                    references: addresses(id)
+
+            tableName: customers
