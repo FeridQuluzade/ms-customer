@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/v1/internal/customers")
 public class CustomerInternalController {
-
     private final CustomerService customerService;
 
     public CustomerInternalController(CustomerService customerService) {
@@ -23,5 +22,4 @@ public class CustomerInternalController {
     public ResponseEntity<CustomerDto> getCustomer(@PathVariable("id") Long id) {
         return new ResponseEntity<>(customerService.getCustomer(id), HttpStatus.OK);
     }
-
 }

@@ -23,7 +23,7 @@ public class CustomerEntity extends AbstractAuditingEntity {
     private String lastName;
     private LocalDate birthDate;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "customer_id")
     private Set<ContactEntity> customerContactAddress;
 
