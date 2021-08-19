@@ -5,9 +5,7 @@ import az.bank.mscustomer.mapper.CustomerMapper;
 import az.bank.mscustomer.repository.CustomerRepository;
 import az.bank.mscustomer.repository.entity.AddressEntity;
 import az.bank.mscustomer.repository.entity.CustomerEntity;
-import az.bank.mscustomer.service.dto.CustomerCreateDto;
 import az.bank.mscustomer.service.dto.CustomerDto;
-import az.bank.mscustomer.service.dto.CustomerUpdateDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -31,23 +29,23 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public CustomerDto createCustomer(CustomerCreateDto customerCreateDto) {
+    public CustomerDto createCustomer(CustomerDto customerCreateDto) {
         return customerMapper.toDto(
                 customerRepository.save(
                         customerMapper.fromDto(customerCreateDto)));
     }
 
     @Override
-    public CustomerDto editCustomer(CustomerUpdateDto updateDto, Long id) {
+    public CustomerDto editCustomer(CustomerDto updateDto, Long id) {
         CustomerEntity customerDb = findById(id);
-        AddressEntity addressEntity = customerDb.getAddressEntity();
+        AddressEntity addressEntity = customerDb.getAddress();
 
         CustomerEntity customerUpdateEntity = customerMapper.fromDto(updateDto);
-        AddressEntity addressUpdateEntity = customerUpdateEntity.getAddressEntity();
+        AddressEntity addressUpdateEntity = customerUpdateEntity.getAddress();
 
         addressUpdateEntity.setId(addressEntity.getId());
         customerUpdateEntity.setId(id);
-        customerUpdateEntity.setAddressEntity(addressUpdateEntity);
+        customerUpdateEntity.setAddress(addressUpdateEntity);
 
         return customerMapper.toDto(customerRepository.save(customerUpdateEntity));
     }

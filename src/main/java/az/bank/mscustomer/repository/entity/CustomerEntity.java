@@ -29,6 +29,6 @@ public class CustomerEntity extends AbstractAuditingEntity {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id")
-    private AddressEntity addressEntity;
+    private AddressEntity address;
 
 }

@@ -1,13 +1,11 @@
 package az.bank.mscustomer.service;
-
-import az.bank.mscustomer.service.dto.CustomerCreateDto;
 import az.bank.mscustomer.service.dto.CustomerDto;
-import az.bank.mscustomer.service.dto.CustomerUpdateDto;
+
 
 public interface CustomerService {
-    CustomerDto createCustomer(CustomerCreateDto customerCreateDto);
+     CustomerDto createCustomer(CustomerDto customerCreateDto);
 
-    CustomerDto editCustomer(CustomerUpdateDto customerUpdateDto,Long id);
+    CustomerDto editCustomer(CustomerDto customerUpdateDto, Long id);
 
     CustomerDto getCustomer(Long id);
 

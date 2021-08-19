@@ -1,0 +1,32 @@
+databaseChangeLog:
+  - changeSet:
+      id: Create contacts table
+      author: Ferid Quluzade
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: contact_type
+                  type: varchar(32)
+              - column:
+                  name: contact_value
+                  type: varchar(32)
+              - column:
+                  name: customer_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: "fk_customer"
+                    references: customers(id)
+              - column:
+                  name: created_at
+                  type: timestamp
+              - column:
+                  name: updated_at
+                  type: timestamp
+            tableName: contacts
