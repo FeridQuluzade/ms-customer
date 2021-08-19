@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 
 @Entity
 @Data
@@ -21,7 +22,6 @@ public class ContactEntity extends AbstractAuditingEntity {
 
     @Enumerated(EnumType.STRING)
     private ContactType contactType;
-
     private String contactValue;
 
 }

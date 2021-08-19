@@ -32,5 +32,4 @@ databaseChangeLog:
                   constraints:
                     foreignKeyName: "fk_address"
                     references: addresses(id)
-
             tableName: customers
