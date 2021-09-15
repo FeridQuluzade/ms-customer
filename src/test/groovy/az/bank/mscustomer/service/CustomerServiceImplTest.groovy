@@ -58,11 +58,6 @@ class CustomerServiceImplTest extends Specification {
         actual.id == 12
     }
 
-    def "findByCustomer failed by Id"() {
-        given:
-        Long id = 7
-
-    }
 
     def "findCustomer by Id"() {
         given:
@@ -161,7 +156,6 @@ class CustomerServiceImplTest extends Specification {
         then:
         customerRepository.findById(id) >> Optional.of(customerEntity)
         customerRepository.deleteById(customerEntity.id)
-
     }
 
     def "customerEdit success"() {
@@ -220,8 +214,5 @@ class CustomerServiceImplTest extends Specification {
         then:
         customerRepository.findById(id) >> Optional.of(customerEntity)
         customerRepository.save(entityUpdate) >> entityUpdate
-
-
-
     }
 }
