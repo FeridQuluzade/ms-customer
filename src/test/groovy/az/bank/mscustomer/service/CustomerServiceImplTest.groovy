@@ -207,8 +207,6 @@ class CustomerServiceImplTest extends Specification {
         entityUpdate.id = customerEntity.id
         entityUpdate.address.id = customerEntity.address.id
 
-
-
         when:
         customerService.editCustomer(customerDto, id)
         then:
